@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+
+import { extendTheme, NativeBaseProvider } from 'native-base';
+
+import AppLoading from "expo-app-loading"
+import { useFonts, BalsamiqSans_400Regular } from '@expo-google-fonts/balsamiq-sans';
+
+import Container from './Container';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  let [fontsLoaded] = useFonts({
+    BalsamiqSans_400Regular,
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const fontsConfig = {
+    BalsamiqSans: {
+      400: {
+        normal: "BalsamiqSans_400Regular"
+      }
+    }
+  }
+
+  const theme = extendTheme({
+    fontConfig: fontsConfig,
+    font: {
+      heading: "BalsamiqSans",
+      body: "BalsamiqSans",
+      mono: "BalsamiqSans"
+    },
+  })
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  } else {
+    return (
+      <NativeBaseProvider theme={theme}>
+        <Container />
+      </NativeBaseProvider>
+    );
+  }
+}
