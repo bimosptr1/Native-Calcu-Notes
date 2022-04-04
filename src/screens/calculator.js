@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Text, FormControl, Input, Button, HStack } from "native-base";
-import { DarkTheme } from "@react-navigation/native";
 
 export default function Calculator() {
     const [value1, setValue1] = useState(0);
@@ -46,11 +45,11 @@ export default function Calculator() {
 
             <FormControl mb="5">
                 <FormControl.Label>Value A</FormControl.Label>
-                <Input variant="filled" value={String(value1)} keyboardType='numeric' onChangeText={(text) => setValue1(Number(text))} />
+                <Input variant="filled" keyboardType='numeric' value={String(value1)} onChangeText={(text) => setValue1(Number(text))} />
             </FormControl>
             <FormControl mb="5">
                 <FormControl.Label>Value B</FormControl.Label>
-                <Input variant="filled" value={String(value2)} keyboardType='numeric' onChangeText={(text) => setValue2(Number(text))} />
+                <Input variant="filled" keyboardType='numeric' value={String(value2)} onChangeText={(text) => setValue2(Number(text))} />
             </FormControl>
             <HStack space={5} justifyContent="center" mb="5">
                 <Button onPress={add} w="60" h="60" colorScheme="error" _text={{ fontWeight: "800", }}>+</Button>
